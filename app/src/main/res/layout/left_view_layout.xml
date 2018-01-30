@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/top_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:orientation="vertical">
+
+                <hz.com.hzdrag.widget.CircleImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="55dp"
+                    android:src="@mipmap/user"/>
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="付出不亚于任何人的努力，让优秀成为一种习惯！"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@+id/bottom_menu"
+                android:layout_below="@+id/top_menu"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/all"
+                        style="@style/MenuStyle"
+                        android:text="@string/all"/>
+
+                    <TextView
+                        android:id="@+id/fuli"
+                        style="@style/MenuStyle"
+                        android:text="@string/fuli"/>
+
+                    <TextView
+                        android:id="@+id/android"
+                        style="@style/MenuStyle"
+                        android:text="@string/android"/>
+
+                    <TextView
+                        android:id="@+id/ios"
+                        style="@style/MenuStyle"
+                        android:text="@string/ios"/>
+
+                    <TextView
+                        android:id="@+id/video"
+                        style="@style/MenuStyle"
+                        android:text="@string/video"/>
+
+                    <TextView
+                        android:id="@+id/front"
+                        style="@style/MenuStyle"
+                        android:text="@string/front"/>
+
+                    <TextView
+                        android:id="@+id/resource"
+                        style="@style/MenuStyle"
+                        android:text="@string/resource"/>
+
+                    <TextView
+                        android:id="@+id/app"
+                        style="@style/MenuStyle"
+                        android:text="@string/app"/>
+
+                    <TextView
+                        android:id="@+id/more"
+                        style="@style/MenuStyle"
+                        android:text="@string/more"/>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/bottom_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="12dp"
+                    android:text="关于"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:padding="12dp"
+                    android:text="主题"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
