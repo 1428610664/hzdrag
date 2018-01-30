@@ -61,6 +61,7 @@ public class MainInfoFragment extends BaseFragment implements DefineView,ViewPag
         }
         fixedPagerAdapter.setFragments(fragments);
 
+        //info_viewpager.setOffscreenPageLimit(fragments.size());
         info_viewpager.setAdapter(fixedPagerAdapter);
         tab_layout.setupWithViewPager(info_viewpager);
         tab_layout.setTabMode(TabLayout.MODE_SCROLLABLE);

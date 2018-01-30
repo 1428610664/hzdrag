@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.nineoldandroids.view.ViewHelper;
 
@@ -15,6 +16,7 @@ public class MainActivity extends BaseActivity {
 
     private DragLayout drag_layout;
     private ImageView top_bar_icon;
+    private long firstTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +82,15 @@ public class MainActivity extends BaseActivity {
             if(drag_layout.getStatus() == DragLayout.Status.Open){
                 drag_layout.close();
                 return false;
+            }else{
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) {
+                    Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;
+                    return true;
+                } else {
+                    System.exit(0);
+                }
             }
         }
         return super.onKeyDown(keyCode, event);

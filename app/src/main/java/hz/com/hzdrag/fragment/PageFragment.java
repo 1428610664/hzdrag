@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
 import java.util.ArrayList;
 
 import hz.com.hzdrag.R;
@@ -16,6 +20,8 @@ import hz.com.hzdrag.common.DefineView;
 import hz.com.hzdrag.entity.CategoriesBean;
 import hz.com.hzdrag.fragment.base.BaseFragment;
 import hz.com.hzdrag.widget.DividerItemDecoration;
+
+import static hz.com.hzdrag.R.id.refreshLayout;
 
 /**
  * 当前类注释:页面Fragment
@@ -34,6 +40,8 @@ public class PageFragment extends BaseFragment implements DefineView {
     private RecyclerView mRecyclerView;
     private MyAdapter mMyAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private RefreshLayout mRefreshLayout;
 
     public static PageFragment newInstance(CategoriesBean extra) {
         Bundle bundle = new Bundle();
@@ -61,6 +69,7 @@ public class PageFragment extends BaseFragment implements DefineView {
             initValidata();
             initListener();
             bindData();
+            initRefreshLayout();
         }
         return mView;
     }
@@ -82,6 +91,37 @@ public class PageFragment extends BaseFragment implements DefineView {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         // 设置adapter
         mRecyclerView.setAdapter(mMyAdapter);
+    }
+
+    private void initRefreshLayout() {
+        mRefreshLayout = (RefreshLayout) mView.findViewById(refreshLayout);
+        mRefreshLayout.setEnableAutoLoadmore(true);  //开启自动加载功能（非必须）
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(final RefreshLayout refreshlayout) {
+                refreshlayout.getLayout().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mMyAdapter.updateData(getData());
+                        refreshlayout.finishRefresh();
+                    }
+                }, 2000);
+            }
+        });
+        mRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(final RefreshLayout refreshlayout) {
+                refreshlayout.getLayout().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mMyAdapter.addData(getData());
+                        refreshlayout.finishLoadmore();
+                    }
+                }, 2000);
+            }
+        });
+
+        //mRefreshLayout.autoRefresh();
     }
 
     private ArrayList<String> getData() {
